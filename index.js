@@ -1,5 +1,4 @@
-const cheerio = require('cheerio');
-const axios = require("axios");
+const puppeteer = require('puppeteer');
 
 const containerQuestionLink = 'https://tce-print.s3.ap-south-1.amazonaws.com/Print-Player/container-question.html';
 
@@ -35,9 +34,14 @@ const json = {
 }
 
 const load = async () => {
-    const { data } = await axios.get(containerQuestionLink);
-    const $ = cheerio.load(data);
-    console.log($);
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto('https://tce-print.s3.ap-south-1.amazonaws.com/Print-Player/container-question.html', { waitUntil: 'networkidle0' });
+    const data = await page.evaluate((json) => {
+        loadQuestions(json);
+    }, json);
+    console.log(data);
+    await browser.close();
 }
 
 load();
