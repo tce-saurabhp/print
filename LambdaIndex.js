@@ -55,6 +55,36 @@ exports.handler = async (event) => {
 
     await page.goto(`file:${path.join(__dirname, 'container-question.html')}`, { waitUntil: 'networkidle0' });
 
+    const data = await page.evaluate(async () => {
+        const json = {
+            "question_grp": [{
+                    "instruction": "( Subjective Section A )",
+                    "questions": [
+                        "/tmp/tqqb-e16d3e03-0d12-40e6-94d6-47b221fb5729.html?rand=02"
+                    ]
+                },
+                {
+                    "instruction": "( Non-Subjective Section B )",
+                    "questions": [
+                        "/tmp/tqqb-e2ae8d62-b5a0-4ffb-a180-0f1d37ef9a55.html?rand=01",
+                        "/tmp/tqqb-cea5e982-ab7e-4359-86a3-d31a8a6bd069.html?rand=03"
+                    ]
+                }
+            ],
+            "classes": "container-fluid quiz_print one-container lower-roman hide-intro hide-answers",
+            "general_instructions": "<b>General Instructions</b><br><li>Answer on Plain Sheet</li><li>Number your answers correctly</li>",
+            "duaration": "10",
+            "marks": "30",
+            "subject": "Maths",
+            "grade": "Level 2",
+            "title": "Parts of the body"
+        };
+        loadQuestions(json);
+        return document.querySelector('*').outerHTML;
+    });
+
+    //TODO Set our html String here
+    page.setContent(data);
     const options = await page.pdf({
         printBackground: true,
         format: 'A4',
