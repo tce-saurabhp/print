@@ -37,13 +37,17 @@ const load = async () => {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.goto(containerQuestionLink, { waitUntil: 'networkidle0' });
+    page.on('console', msg => {
+        for (let i = 0; i < msg.args().length; ++i)
+            console.log(`${i}: ${msg.args()[i]}`);
+    });
     //Dont use Node variables in Puppeteer
     //Use exposeFunction to expose Node function to Puppeteer
     const data = await page.evaluate(async () => {
         console.log("Before");
         loadQuestions();
         console.log("After");
-    }, json);
+    });
     console.log(data);
     await browser.close();
 }
