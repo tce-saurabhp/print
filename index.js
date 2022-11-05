@@ -34,11 +34,15 @@ const json = {
 }
 
 const load = async () => {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
-    await page.goto('https://tce-print.s3.ap-south-1.amazonaws.com/Print-Player/container-question.html', { waitUntil: 'networkidle0' });
-    const data = await page.evaluate((json) => {
-        loadQuestions(json);
+    await page.goto(containerQuestionLink, { waitUntil: 'networkidle0' });
+    //Dont use Node variables in Puppeteer
+    //Use exposeFunction to expose Node function to Puppeteer
+    const data = await page.evaluate(async () => {
+        console.log("Before");
+        loadQuestions();
+        console.log("After");
     }, json);
     console.log(data);
     await browser.close();

@@ -1,0 +1,237 @@
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mukta:wght@200;300;400;500;600;700;800&display=swap");
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.col-3 {
+  width: 25%;
+ display: flex;
+ flex-wrap: wrap;
+align-content: space-between;
+}
+
+
+body {
+  font-family: "Lato", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.QuestionBox h5 {
+  width: 20px;
+  font-size: 10px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  line-height: 11px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+
+.QuestionBox p {
+  margin: 0;
+  font-weight: 500;
+  font-family: "Montserrat", sans-serif;
+}
+
+.QuestionText .QuestionMedia {
+  page-break-inside:avoid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 2px 0;
+  max-width: 200px;
+}
+
+.QuestionText .QuestionMedia img {
+  max-width: 100%;
+}
+
+.QuestionBox .opationBox > div {
+  padding-right: 0;
+}
+.QuestionBox .opationBox > div .opationMedia{  
+  page-break-inside:avoid;
+  max-width: 160px;
+}
+
+.QuestionBox .opationBox > div .opationMedia img {
+  max-width: 100%;
+}
+
+.QuestionBox .opationBox > div .opationTextBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.QuestionBox .opationBox > div .opationTextBox .opationText {
+  font-weight: 300;
+  font-family: "Lato", sans-serif;
+}
+
+.questionMark {
+  width: 30px;
+  text-align: right;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+}
+.AnswersBox{
+  display: none;
+}
+.AnswerTextBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.AnswerTextBox .Answer {
+  width: 30px;
+  font-size: 10px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  line-height: 11px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+.AnswerTextBox .AnswerId {
+  width: 20px;
+  font-size: 10px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  line-height: 11px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+.AnswerTextBox .AnswerText{
+  font-weight: 300;
+    font-family: "Lato", sans-serif;
+    margin: 0;
+}
+
+.columns-container .opationBox .col-3 {
+  width: 100%;
+}
+.Answers .AnswersBox{
+  display: block;  
+}
+.break-inside{
+  page-break-inside:avoid;
+}
+.break-before{
+  page-break-before: always;
+}
+.break-after{
+  page-break-after: always;
+}
+/*# sourceMappingURL=style.css.map */
+</style>
+<script>
+  window.onload = getQCountLocal()
+  function getQCountLocal(){
+    console.log("🚀 ~ file: Q1.html ~ line 157 ~ getQCountLocal ~ event", document.getElementsByClassName('questionNumber'));
+    var count = 0;
+    var elemList = document.getElementsByClassName('questionNumber');
+    for(var i=0; i<elemList.length; i++){
+      count++;
+      elemList[i].innerHTML = 'Q.'+count;
+    }
+  }
+</script>
+<div class="mainQuestionBox">
+  <div class="questionNumber">
+    Q.
+</div>
+<div class="QuestionBox">
+  <div class="QuestionText break-inside">
+    <p>What should Anita do when she comes to know that her new neighbour, Riya, is a non-vegetarian, whereas Anita is a pure vegetarian?
+    </p>
+    <!-- <div class="QuestionMedia">
+        <img class="" src="">
+    </div> -->
+    </div>
+    <div class="row opationBox break-inside">
+        <div class="col-3">
+            <!-- <div class="opationMedia">
+                <img class="" src="">
+            </div> -->
+            <div class="opationTextBox">
+            <h5>i. </h5>
+            <p class="opationText">                
+                She should avoid Riya.
+            </p>
+            </div>
+        </div>
+        <div class="col-3">
+            <!-- <div class="opationMedia">
+                <img class="" src="">
+            </div> -->
+            <div class="opationTextBox">
+            <h5>ii. </h5>
+            <p class="opationText">
+                She should not invite Riya in her social group.
+            </p>
+            </div>
+        </div>
+        <div class="col-3">
+            <!-- <div class="opationMedia">
+                <img class="" src="">
+            </div> -->
+            <div class="opationTextBox">
+            <h5>iii. </h5>
+            <p class="opationText">
+                She should respect Riya’s likes.
+            </p>
+            </div>
+        </div>
+        <div class="col-3">
+            <!-- <div class="opationMedia">
+                <img class="" src="">
+            </div> -->
+            <div class="opationTextBox">
+            <h5>iv. </h5>
+            <p class="opationText">
+                She should gossip about Riya.
+            </p>
+            </div>
+        </div>
+    </div>
+    <div class="AnswersBox">
+      <div class="col-12">
+        <!-- <div class="AnswerMedia">
+            <img class="" src="">
+        </div> -->
+        <div class="AnswerTextBox">
+        <h5 class="Answer">Ans </h5>
+        <h4 class="AnswerId"> (iii)</h4>
+        <p class="AnswerText">5</p>
+        </div>
+    </div>
+    </div>
+</div>
+ <div class="questionMark">
+    1
+</div>
+</div>
