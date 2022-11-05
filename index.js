@@ -3,16 +3,28 @@ const fs = require('fs');
 const path = require('path');
 
 const load = async () => {
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({
+        headless: true,
+        devtools: true,
+        //To access local files
+        args: [
+            '--disable-web-security',
+            '--disable-features=IsolateOrigins',
+            '--disable-site-isolation-trials'
+        ]
+    });
+
     const page = await browser.newPage();
-    //await page.goto(`file:${path.join(__dirname, 'test.html')}`);
+    
+    //Load local html file
     await page.goto(`file:${path.join(__dirname, 'container-question.html')}`, { waitUntil: 'networkidle0' });
+    
+    //For logging inside evaluate
     page.on('console', msg => {
         for (let i = 0; i < msg.args().length; ++i)
             console.log(`${i}: ${msg.args()[i]}`);
     });
-    //Dont use Node variables in Puppeteer
-    //Use exposeFunction to expose Node function to Puppeteer
+    
     const data = await page.evaluate(async () => {
         const json = {
             "question_grp": [
