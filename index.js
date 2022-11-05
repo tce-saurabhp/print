@@ -1,20 +1,18 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
-
-// const containerQuestionLink = 'https://tce-print.s3.ap-south-1.amazonaws.com/Print-Player/container-question.html';
-const containerQuestionLink = 'https://tce-predev-s3-frontend.s3.ap-south-1.amazonaws.com/container-question.html';
+const path = require('path');
 
 const load = async () => {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
-    await page.goto(containerQuestionLink, { waitUntil: 'networkidle0' });
+    //await page.goto(`file:${path.join(__dirname, 'test.html')}`);
+    await page.goto(`file:${path.join(__dirname, 'container-question.html')}`, { waitUntil: 'networkidle0' });
     page.on('console', msg => {
         for (let i = 0; i < msg.args().length; ++i)
             console.log(`${i}: ${msg.args()[i]}`);
     });
     //Dont use Node variables in Puppeteer
     //Use exposeFunction to expose Node function to Puppeteer
-    
     const data = await page.evaluate(async () => {
         const json = {
             "question_grp": [
