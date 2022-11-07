@@ -43,6 +43,7 @@ const json = {
         }
     ],
     "classes": "container-fluid quiz_print one-container lower-roman hide-intro hide-answers",
+    // "classes": "container-fluid quiz_print one-container lower-roman hide-intro answers",  //For answers
     "general_instructions": "<b>General Instructions</b><br><li>Answer on Plain Sheet</li><li>Number your answers correctly</li>",
     "duaration": "10",
     "marks": "30",
