@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const { S3Client, PutObjectCommand, GetObjectCommand } = require("@aws-sdk/client-s3");
 const s3 = new S3Client({ region: "ap-south-1" });
+const url = require('url');
 
 const sourceBucketName = 'tce-predev-s3-bkt';
 const destinationBucketName = 'tce-predev-s3-bkt';
@@ -58,7 +59,7 @@ exports.handler = async (event) => {
 
     //Create question and solution pdf parallely
     await Promise.all([createAndUploadPdf(browser, questionJson, questionPdfFileName),
-        createAndUploadPdf(browser, solutionJson, solutionPdfFileName)
+    createAndUploadPdf(browser, solutionJson, solutionPdfFileName)
     ]);
 
     const questionResource = new ContentResourceVO("pdf", "question", questionPdfFileName, 0);
@@ -73,8 +74,9 @@ exports.handler = async (event) => {
  * Convert the merged html to pdf
  */
 async function createAndUploadPdf(browser, json, pdfFileName) {
+    const htmlUrl = url.pathToFileURL(`${path.join(__dirname, 'container-question.html')}`).href;
     var page = await browser.newPage();
-    await page.goto(`file:${path.join(__dirname, 'container-question.html')}`, { waitUntil: 'networkidle0' });
+    await page.goto(htmlUrl, { waitUntil: 'networkidle0' });
     var mergedHtml = await page.evaluate(async (json) => {
         loadQuestions(json);
         return document.querySelector('*').outerHTML;
