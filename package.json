@@ -1,24 +1,17 @@
 {
   "name": "print",
   "version": "1.0.0",
-  "description": "Testing for print",
+  "description": "Lambda function to convert html to pdf",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./index.js",
-    "start": "node ./index.js"
+    "zip": "7z a -r print.zip ./dist/*",
+    "build": "del dist.zip && ncc build index.js -m -o dist"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tce-saurabhp/print.git"
-  },
-  "author": "Saurabh",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/tce-saurabhp/print/issues"
-  },
-  "homepage": "https://github.com/tce-saurabhp/print#readme",
   "dependencies": {
-    "nodemon": "^2.0.20",
-    "puppeteer": "^19.2.2"
+    "chrome-aws-lambda": "^10.1.0",
+    "puppeteer-core": "^10.0.0",
+    "@aws-sdk/client-s3": "^3.213.0"
   }
 }
